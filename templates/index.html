@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Дни рождения!</title>
+</head>
+<style type="text/css">
+	table,
+	td {
+	    border: 1px solid #333;
+	}
+
+	thead,
+	tfoot {
+	    background-color: #333;
+	    color: #fff;
+	}
+</style>
+<body>
+	<div style="margin:0 auto; width: 308px; margin-top:200px;">
+		<h2>Дни рождения</h2>
+		<form action="/addFriend" method="POST">
+			<h4 style="width: 300px;">Введите имя</h4>
+			<input type="text" name="frName" style="width: 300px;">
+			<h4 style="width: 300px;">Введите дату</h4>
+			<input type="date" name="frDate" style="width: 300px;">
+			<button type="submit" name="" style="width: 308px; text-align: center; margin-top: 20px; margin-bottom: 20px">Добавить друга</button>
+		</form>
+		<table style="width: 308px">
+		    <thead>
+		        <tr>
+		            <th colspan="3">Дни рождения</th>
+		        </tr>
+		    </thead>
+		    <tbody>
+		    	{% for d in data %}
+		    	<tr>
+			        <td>{{d[1]}}</td>
+			        <td>{{d[2]}}</td>
+			        <form action="/delFriend" method="POST">
+			           	<input type="hidden" name="toDel" value="{{d[0]}}">
+			            <td><input type="submit" value="Удалить" style="color: red; height: 100%; text-align: center;"></td>
+			        </form>
+		        	</tr>
+		        	{% endfor %}
+		    </tbody>
+		</table>
+	</div>
+</body>
+</html>
